@@ -7,9 +7,14 @@
  *  under `?app=docs`, the Drive `/file/<id>` route when the file is a
  *  .docx). Every other token (typography, spacing, motion, neutrals)
  *  stays identical — only --color-accent and its derivatives change.
+ *
+ *  Scope: ONLY `[data-app='docs']`. This file is imported by the main
+ *  tokens.css barrel, so it must NOT touch the bare `:root` — doing so
+ *  forced the docs cyan onto every consuming app (sheets, slides) and
+ *  clobbered their own accent. Sheets stays teal because it sets no
+ *  data-app; docs opts in with `<html data-app="docs">`.
  * ─────────────────────────────────────────────────────────────────────── */
 
-:root,
 [data-app='docs'],
 [data-app='docs']:root {
   --color-accent: #0891b2;
